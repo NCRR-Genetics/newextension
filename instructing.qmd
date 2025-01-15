@@ -17,6 +17,8 @@ post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
 
 ```
 
+## Plot one continuous variable
+
 ```{r}
 
 ggplot(post_meal_data, aes(x = BMI))
@@ -36,15 +38,18 @@ ggplot(post_meal_data, aes(x = BMI)) +
 
 ```
 
+## Exercise: Plot a discrete variable
+
 ```{r solution-discrete-variables}
 #| eval: false
 #| code-fold: true
-#| code-summary: '**Click for the solution**. Only click if you are struggling or are out of time.'
-#| fig-cap: "___"
+#| fig-cap: "Plot discrete, exercise"
 #| label: fig-glykemi-bar
 ggplot(post_meal_data, aes(x = glykemi)) +  geom_bar()
 
 ```
+
+## Plot two discrete variables
 
 ```{r}
 post_meal_data |>
@@ -58,10 +63,26 @@ post_meal_data |>
   geom_bar()
 ```
 
+If I wanted to remove the legend, which aspect of ggplot would I use,
+recall, aes(), geom\_, scale\_, and theme\_?
+
 ```{r}
 post_meal_data |>
   ggplot(aes(x = Group, fill = as.character(glykemi))) +
   geom_bar(position = position_dodge())
+
+```
+
+## Putting plots side by side
+
+```{r}
+ggplot(post_meal_data, aes(x = BMI)) +
+  geom_histogram()
+```
+
+```{r}
+ggplot(post_meal_data, aes(x = glykemi)) +
+  geom_bar()
 ```
 
 ```{r side-by-side-figs}
@@ -78,6 +99,8 @@ ggplot(post_meal_data, aes(x = glykemi)) +
   geom_bar()
 
 ```
+
+## Make code readable, help yourself
 
 ```{r eval=FALSE}
 # Object names
@@ -100,6 +123,8 @@ y <- 2
 }
 
 ```
+
+## Plotting two continuous variables
 
 ```{r}
 ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
